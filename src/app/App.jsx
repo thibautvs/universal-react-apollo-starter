@@ -1,8 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Helmet from 'react-helmet'
-import { Switch, Route } from 'react-router-dom'
-import { NavLink } from 'react-router-dom'
+import { Switch, Route, NavLink } from 'react-router-dom'
 import '../vendor/foundation.css'
 
 const StyledHeader = styled.h1`
@@ -25,12 +24,12 @@ const Menu = () => (
   <article>
     <ul>
       <li>
-        <NavLink exact to={'/'}>
+        <NavLink exact to="/">
           Homepage
         </NavLink>
       </li>
       <li>
-        <NavLink to={'/about'}>About</NavLink>
+        <NavLink to="/about">About</NavLink>
       </li>
     </ul>
   </article>

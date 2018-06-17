@@ -1,0 +1,49 @@
+{
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "jest": true
+  },
+  "globals": {
+    "document": true
+  },
+  "rules": {
+    # forbid semicolons
+    "semi": [2, "never"],
+    # add exceptions when checking imports paths
+    "import/no-unresolved": [2, { ignore: ["config", "utils", "toolbox"] }],
+    # add exceptions when checking import file extensions
+    "import/extensions": [2, { ".js": "never", ".jsx": "never" }],
+    # no need of alt attribute on images
+    "jsx-a11y/img-has-alt": [0],
+    # validate "to" on <Link> tags instead of "href" on <a> tags
+    "jsx-a11y/anchor-is-valid": [2, {
+      "components": ["Link"],
+      "specialLink": ["to"]
+    }],
+    # add exceptions for props validation
+    "react/prop-types": [2, {
+      "ignore": ["children"]
+    }],
+    # closing bracket doesn't have to be aligned with opening one (to allow inline brackets)
+    "react/jsx-closing-bracket-location": [0],
+    # no need of a trailing comma on the last line
+    "comma-dangle": [0],
+    # functions returning values don't need a useless default return
+    "consistent-return": [0],
+    # switch statements don't need a default case
+    "default-case": [0],
+    # no space needed after { or before }
+    "object-curly-spacing": [0],
+    # disable code style rules for arrow bodies
+    "arrow-body-style": [0],
+    # set lines max length to 140 chars
+    "max-len": [2, 140, 2, {
+      "ignoreUrls": true,
+      "ignoreComments": false
+    }],
+    # allow autobinding syntax
+    "react/jsx-no-bind": [2, { allowBind: true }]
+  }
+}

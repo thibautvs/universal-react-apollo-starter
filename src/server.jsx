@@ -7,23 +7,19 @@ import Template from './app/template'
 import theme from './theme'
 import App from './app/App'
 
-export default function serverRenderer({ clientStats, serverStats }) {
-  return (req, res, next) => {
+export default function serverRenderer() {
+  return (req, res) => {
     const context = {}
-    const markup = ReactDOMServer.renderToString(
+    const componentTree = (
       <StaticRouter location={req.url} context={context}>
         <ThemeProvider theme={theme}>
           <App />
         </ThemeProvider>
       </StaticRouter>
     )
+    const markup = ReactDOMServer.renderToString(componentTree)
     const helmet = Helmet.renderStatic()
 
-    res.status(200).send(
-      Template({
-        markup: markup,
-        helmet: helmet
-      })
-    )
+    res.status(200).send(Template({ markup, helmet }))
   }
 }
