@@ -1,8 +1,25 @@
 import React, { Component } from 'react'
+import styled from 'styled-components'
 import Helmet from 'react-helmet'
 import { Switch, Route } from 'react-router-dom'
 import { Link, NavLink } from 'react-router-dom'
-import '../styles/styles.css'
+import '../vendor/foundation.css'
+
+const StyledHeader = styled.h1`
+  color: ${props => props.theme.colors.company};
+`
+
+const GridContainer = styled.div`
+  div {
+    div:nth-child(odd) {
+      background-color: #7ec2ed;
+    }
+
+    div:nth-child(even) {
+      background-color: #207ab8;
+    }
+  }
+`
 
 class Menu extends Component {
   render() {
@@ -32,7 +49,22 @@ class Homepage extends Component {
       <div>
         <Helmet title="Home" />
         <Menu />
-        <h1>Homepage</h1>
+        <StyledHeader>Homepage</StyledHeader>
+        <p>Zurb Foundation Grid demo</p>
+        <GridContainer>
+          <div className="grid-x">
+            <div className="cell">full width cell</div>
+            <div className="cell">full width cell</div>
+          </div>
+          <div className="grid-x">
+            <div className="cell small-6">6 cells</div>
+            <div className="cell small-6">6 cells</div>
+          </div>
+          <div className="grid-x">
+            <div className="cell medium-6 large-4">12/6/4 cells</div>
+            <div className="cell medium-6 large-8">12/6/8 cells</div>
+          </div>
+        </GridContainer>
       </div>
     )
   }
@@ -44,7 +76,7 @@ class About extends Component {
       <div>
         <Helmet title="About" />
         <Menu />
-        <h1>About</h1>
+        <StyledHeader>About</StyledHeader>
       </div>
     )
   }
@@ -56,7 +88,7 @@ class Contact extends Component {
       <div>
         <Helmet title="Contact" />
         <Menu />
-        <h1>Contact</h1>
+        <StyledHeader>Contact</StyledHeader>
       </div>
     )
   }
