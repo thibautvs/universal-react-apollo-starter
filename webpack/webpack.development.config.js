@@ -1,5 +1,5 @@
 const path = require('path')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const distDir = path.join(__dirname, '../dist')
 const srcDir = path.join(__dirname, '../src')
@@ -8,6 +8,7 @@ module.exports = [
   {
     name: 'client',
     target: 'web',
+    mode: 'development',
     entry: `${srcDir}/client.jsx`,
     output: {
       path: path.join(__dirname, 'dist'),
@@ -21,40 +22,34 @@ module.exports = [
     module: {
       rules: [
         {
-          test: /\.(js|jsx)$/,
+          test: /\.jsx?$/,
           exclude: /(node_modules\/)/,
-          use: [
-            {
-              loader: 'babel-loader'
-            }
-          ]
+          loader: 'babel-loader'
         },
         {
           test: /\.css$/,
-          use: ExtractTextPlugin.extract({
-            fallback: 'style-loader',
-            use: [
-              {
-                loader: 'css-loader',
-                options: {
-                  sourceMap: true
-                }
+          use: [
+            MiniCssExtractPlugin.loader,
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: true
               }
-            ]
-          })
+            }
+          ]
         }
       ]
     },
     plugins: [
-      new ExtractTextPlugin({
-        filename: 'styles.css',
-        allChunks: true
+      new MiniCssExtractPlugin({
+        filename: 'styles.css'
       })
     ]
   },
   {
     name: 'server',
     target: 'node',
+    mode: 'development',
     entry: `${srcDir}/server.jsx`,
     output: {
       path: path.join(__dirname, 'dist'),
@@ -68,13 +63,9 @@ module.exports = [
     module: {
       rules: [
         {
-          test: /\.(js|jsx)$/,
+          test: /\.jsx?$/,
           exclude: /(node_modules\/)/,
-          use: [
-            {
-              loader: 'babel-loader'
-            }
-          ]
+          loader: 'babel-loader'
         },
         {
           test: /\.css$/,

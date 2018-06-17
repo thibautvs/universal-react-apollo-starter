@@ -1,8 +1,9 @@
 const path = require('path')
 const webpack = require('webpack')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const StatsPlugin = require('stats-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const StatsPlugin = require('stats-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 const distDir = path.join(__dirname, '../dist')
@@ -12,6 +13,7 @@ module.exports = [
   {
     name: 'client',
     target: 'web',
+    mode: 'production',
     entry: `${srcDir}/client.jsx`,
     output: {
       path: distDir,
@@ -24,34 +26,27 @@ module.exports = [
     module: {
       rules: [
         {
-          test: /\.(js|jsx)$/,
+          test: /\.jsx?$/,
           exclude: /(node_modules\/)/,
-          use: [
-            {
-              loader: 'babel-loader'
-            }
-          ]
+          loader: 'babel-loader'
         },
         {
           test: /\.css$/,
-          use: ExtractTextPlugin.extract({
-            fallback: 'style-loader',
-            use: [
-              {
-                loader: 'css-loader',
-                options: {
-                  sourceMap: false
-                }
+          use: [
+            MiniCssExtractPlugin.loader,
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: false
               }
-            ]
-          })
+            }
+          ]
         }
       ]
     },
     plugins: [
-      new ExtractTextPlugin({
-        filename: 'styles.css',
-        allChunks: true
+      new MiniCssExtractPlugin({
+        filename: 'styles.css'
       }),
       new webpack.DefinePlugin({
         'process.env': {
@@ -59,20 +54,23 @@ module.exports = [
         }
       }),
       new CleanWebpackPlugin(distDir),
-      new webpack.optimize.UglifyJsPlugin({
-        compress: {
-          warnings: false,
-          screw_ie8: true,
-          drop_console: true,
-          drop_debugger: true
-        }
-      }),
       new webpack.optimize.OccurrenceOrderPlugin()
-    ]
+    ],
+    optimization: {
+      minimizer: [
+        new UglifyJsPlugin({
+          cache: true,
+          parallel: true,
+          sourceMap: false
+        }),
+        new OptimizeCssAssetsPlugin({})
+      ]
+    }
   },
   {
     name: 'server',
     target: 'node',
+    mode: 'production',
     entry: `${srcDir}/server.jsx`,
     output: {
       path: distDir,
@@ -86,13 +84,9 @@ module.exports = [
     module: {
       rules: [
         {
-          test: /\.(js|jsx)$/,
+          test: /\.jsx?$/,
           exclude: /(node_modules\/)/,
-          use: [
-            {
-              loader: 'babel-loader'
-            }
-          ]
+          loader: 'babel-loader'
         },
         {
           test: /\.css$/,
@@ -111,15 +105,22 @@ module.exports = [
       ]
     },
     plugins: [
-      new OptimizeCssAssetsPlugin({
-        cssProcessorOptions: { discardComments: { removeAll: true } }
-      }),
       new StatsPlugin('stats.json', {
         chunkModules: true,
         modules: true,
         chunks: true,
         exclude: [/node_modules[\\\/]react/]
       })
-    ]
+    ],
+    optimization: {
+      minimizer: [
+        new UglifyJsPlugin({
+          cache: true,
+          parallel: true,
+          sourceMap: false
+        }),
+        new OptimizeCssAssetsPlugin({})
+      ]
+    }
   }
 ]
