@@ -1,2 +1,3 @@
 # universal-react-apollo-starter
-Universal React Apollo Starter Kit
+
+Universal React Apollo Starter
