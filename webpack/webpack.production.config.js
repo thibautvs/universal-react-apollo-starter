@@ -21,7 +21,10 @@ module.exports = [
       publicPath: distDir
     },
     resolve: {
-      extensions: ['.js', '.jsx']
+      extensions: ['.js', '.jsx'],
+      alias: {
+        config: path.join(__dirname, '../config')
+      }
     },
     module: {
       rules: [
@@ -50,7 +53,7 @@ module.exports = [
       }),
       new webpack.DefinePlugin({
         'process.env': {
-          NODE_ENV: '"production"'
+          NODE_ENV: JSON.stringify(process.env.NODE_ENV)
         }
       }),
       new CleanWebpackPlugin(distDir),
@@ -79,7 +82,10 @@ module.exports = [
       publicPath: distDir
     },
     resolve: {
-      extensions: ['.js', '.jsx']
+      extensions: ['.js', '.jsx'],
+      alias: {
+        config: path.join(__dirname, '../config')
+      }
     },
     module: {
       rules: [
@@ -105,6 +111,11 @@ module.exports = [
       ]
     },
     plugins: [
+      new webpack.DefinePlugin({
+        'process.env': {
+          NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+        }
+      }),
       new StatsPlugin('stats.json', {
         chunkModules: true,
         modules: true,

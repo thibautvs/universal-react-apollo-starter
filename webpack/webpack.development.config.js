@@ -16,7 +16,10 @@ module.exports = [
       publicPath: '/dist/'
     },
     resolve: {
-      extensions: ['.js', '.jsx']
+      extensions: ['.js', '.jsx'],
+      alias: {
+        config: path.join(__dirname, '../config')
+      }
     },
     devtool: 'source-map',
     module: {
@@ -58,7 +61,10 @@ module.exports = [
       publicPath: '/dist/'
     },
     resolve: {
-      extensions: ['.js', '.jsx']
+      extensions: ['.js', '.jsx'],
+      alias: {
+        config: path.join(__dirname, '../config')
+      }
     },
     module: {
       rules: [

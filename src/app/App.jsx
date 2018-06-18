@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Helmet from 'react-helmet'
 import { Switch, Route, NavLink } from 'react-router-dom'
+import CONFIG from 'config/environment'
 import '../vendor/foundation.css'
 
 const StyledHeader = styled.h1`
@@ -63,6 +64,7 @@ const AboutPage = () => (
     <Helmet title="About" />
     <Menu />
     <StyledHeader>About</StyledHeader>
+    <p>API URL: {CONFIG.apiURL}</p>
   </section>
 )
 
