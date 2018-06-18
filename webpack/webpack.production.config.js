@@ -23,7 +23,8 @@ module.exports = [
     resolve: {
       extensions: ['.js', '.jsx'],
       alias: {
-        config: path.join(__dirname, '../config')
+        config: path.join(__dirname, '../config'),
+        utils: path.join(__dirname, '../src/utils')
       }
     },
     module: {
@@ -84,7 +85,8 @@ module.exports = [
     resolve: {
       extensions: ['.js', '.jsx'],
       alias: {
-        config: path.join(__dirname, '../config')
+        config: path.join(__dirname, '../config'),
+        utils: path.join(__dirname, '../src/utils')
       }
     },
     module: {
