@@ -11,7 +11,7 @@ module.exports = [
     mode: 'development',
     entry: `${srcDir}/client.jsx`,
     output: {
-      path: path.join(__dirname, 'dist'),
+      path: distDir,
       filename: 'client.js',
       publicPath: '/dist/'
     },
@@ -41,6 +41,16 @@ module.exports = [
               }
             }
           ]
+        },
+        {
+          test: /\.(jpe?g|png|gif)$/,
+          loader: 'file-loader',
+          query: { name: 'assets/images/[name].[ext]' }
+        },
+        {
+          test: /\.(woff2?|eot|ttf|otf)$/,
+          loader: 'file-loader',
+          query: { name: 'assets/fonts/[name].[ext]' }
         }
       ]
     },
@@ -56,7 +66,7 @@ module.exports = [
     mode: 'development',
     entry: `${srcDir}/server.jsx`,
     output: {
-      path: path.join(__dirname, 'dist'),
+      path: distDir,
       filename: 'server.js',
       libraryTarget: 'commonjs2',
       publicPath: '/dist/'
@@ -84,10 +94,20 @@ module.exports = [
             {
               loader: 'css-loader',
               options: {
-                sourceMap: false
+                sourceMap: true
               }
             }
           ]
+        },
+        {
+          test: /\.(jpe?g|png|gif)$/,
+          loader: 'file-loader',
+          query: { name: 'assets/images/[name].[ext]' }
+        },
+        {
+          test: /\.(woff2?|eot|ttf|otf)$/,
+          loader: 'file-loader',
+          query: { name: 'assets/fonts/[name].[ext]' }
         }
       ]
     }

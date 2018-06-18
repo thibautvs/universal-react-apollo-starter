@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const StatsPlugin = require('stats-webpack-plugin')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const CleanPlugin = require('clean-webpack-plugin')
 
 const distDir = path.join(__dirname, '../dist')
 const srcDir = path.join(__dirname, '../src')
@@ -18,7 +18,7 @@ module.exports = [
     output: {
       path: distDir,
       filename: 'client.js',
-      publicPath: distDir
+      publicPath: '/dist/'
     },
     resolve: {
       extensions: ['.js', '.jsx'],
@@ -45,10 +45,23 @@ module.exports = [
               }
             }
           ]
+        },
+        {
+          test: /\.(jpe?g|png|gif)$/,
+          loader: 'file-loader',
+          query: { name: 'assets/images/[name].[ext]' }
+        },
+        {
+          test: /\.(woff2?|eot|ttf|otf)$/,
+          loader: 'file-loader',
+          query: { name: 'assets/fonts/[name].[ext]' }
         }
       ]
     },
     plugins: [
+      new CleanPlugin(['dist'], {
+        root: path.join(__dirname, '..')
+      }),
       new MiniCssExtractPlugin({
         filename: 'styles.css'
       }),
@@ -57,7 +70,6 @@ module.exports = [
           NODE_ENV: JSON.stringify(process.env.NODE_ENV)
         }
       }),
-      new CleanWebpackPlugin(distDir),
       new webpack.optimize.OccurrenceOrderPlugin()
     ],
     optimization: {
@@ -67,7 +79,11 @@ module.exports = [
           parallel: true,
           sourceMap: false
         }),
-        new OptimizeCssAssetsPlugin({})
+        new OptimizeCssAssetsPlugin({
+          cssProcessorOptions: {
+            discardUnused: false
+          }
+        })
       ]
     }
   },
@@ -80,7 +96,7 @@ module.exports = [
       path: distDir,
       filename: 'server.js',
       libraryTarget: 'commonjs2',
-      publicPath: distDir
+      publicPath: '/dist/'
     },
     resolve: {
       extensions: ['.js', '.jsx'],
@@ -109,10 +125,23 @@ module.exports = [
               }
             }
           ]
+        },
+        {
+          test: /\.(jpe?g|png|gif)$/,
+          loader: 'file-loader',
+          query: { name: 'assets/images/[name].[ext]' }
+        },
+        {
+          test: /\.(woff2?|eot|ttf|otf)$/,
+          loader: 'file-loader',
+          query: { name: 'assets/fonts/[name].[ext]' }
         }
       ]
     },
     plugins: [
+      new CleanPlugin(['dist'], {
+        root: path.join(__dirname, '..')
+      }),
       new webpack.DefinePlugin({
         'process.env': {
           NODE_ENV: JSON.stringify(process.env.NODE_ENV)
@@ -122,7 +151,7 @@ module.exports = [
         chunkModules: true,
         modules: true,
         chunks: true,
-        exclude: [/node_modules[\\\/]react/]
+        exclude: [/node_modules[\\/]react/]
       })
     ],
     optimization: {
@@ -132,7 +161,11 @@ module.exports = [
           parallel: true,
           sourceMap: false
         }),
-        new OptimizeCssAssetsPlugin({})
+        new OptimizeCssAssetsPlugin({
+          cssProcessorOptions: {
+            discardUnused: false
+          }
+        })
       ]
     }
   }

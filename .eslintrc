@@ -15,6 +15,14 @@
     "import/no-unresolved": [2, { ignore: ["config", "utils", "toolbox"] }],
     # add exceptions when checking import file extensions
     "import/extensions": [2, { ".js": "never", ".jsx": "never" }],
+    # add exception regarding which files are allowed to import devDependencies
+    "import/no-extraneous-dependencies": [2, {
+      devDependencies: [
+        "**/*.test.js",
+        "**/webpack/**"
+      ],
+      optionalDependencies: false,
+    }],
     # no need of alt attribute on images
     "jsx-a11y/img-has-alt": [0],
     # validate "to" on <Link> tags instead of "href" on <a> tags
