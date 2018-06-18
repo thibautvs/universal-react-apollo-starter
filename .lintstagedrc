@@ -1,0 +1,9 @@
+{
+  "*.{js,jsx}": [
+    "eslint --fix",
+    "stylelint **/*.jsx",
+    "prettier-eslint --no-semi --single-quote --print-width 80 --write",
+    "git add",
+    "jest --bail --findRelatedTests"
+  ]
+}
