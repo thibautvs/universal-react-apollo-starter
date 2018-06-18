@@ -5,6 +5,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const StatsPlugin = require('stats-webpack-plugin')
 const CleanPlugin = require('clean-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
 
 const distDir = path.join(__dirname, '../dist')
 const srcDir = path.join(__dirname, '../src')
@@ -70,7 +71,8 @@ module.exports = [
           NODE_ENV: JSON.stringify(process.env.NODE_ENV)
         }
       }),
-      new webpack.optimize.OccurrenceOrderPlugin()
+      new webpack.optimize.OccurrenceOrderPlugin(),
+      new CopyPlugin([{ from: `${srcDir}/favicon.ico`, to: distDir }])
     ],
     optimization: {
       minimizer: [
@@ -152,7 +154,8 @@ module.exports = [
         modules: true,
         chunks: true,
         exclude: [/node_modules[\\/]react/]
-      })
+      }),
+      new CopyPlugin([{ from: `${srcDir}/favicon.ico`, to: distDir }])
     ],
     optimization: {
       minimizer: [

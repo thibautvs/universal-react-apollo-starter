@@ -1,4 +1,5 @@
 const path = require('path')
+const CopyPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const distDir = path.join(__dirname, '../dist')
@@ -57,7 +58,8 @@ module.exports = [
     plugins: [
       new MiniCssExtractPlugin({
         filename: 'styles.css'
-      })
+      }),
+      new CopyPlugin([{ from: `${srcDir}/favicon.ico`, to: distDir }])
     ]
   },
   {
@@ -110,6 +112,7 @@ module.exports = [
           query: { name: 'assets/fonts/[name].[ext]' }
         }
       ]
-    }
+    },
+    plugins: [new CopyPlugin([{ from: `${srcDir}/favicon.ico`, to: distDir }])]
   }
 ]
