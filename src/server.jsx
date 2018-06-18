@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom'
-import { ThemeProvider } from 'styled-components'
+import { ThemeProvider, ServerStyleSheet } from 'styled-components'
 import { Helmet } from 'react-helmet'
 import Template from './app/template'
 import theme from './theme'
@@ -17,9 +17,11 @@ export default function serverRenderer() {
         </ThemeProvider>
       </StaticRouter>
     )
-    const markup = ReactDOMServer.renderToString(componentTree)
+    const sheet = new ServerStyleSheet()
+    const markup = ReactDOMServer.renderToString(sheet.collectStyles(componentTree))
+    const styles = sheet.getStyleTags()
     const helmet = Helmet.renderStatic()
 
-    res.status(200).send(Template({ markup, helmet }))
+    res.status(200).send(Template({ markup, styles, helmet }))
   }
 }
