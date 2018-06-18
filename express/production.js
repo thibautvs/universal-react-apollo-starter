@@ -1,3 +1,6 @@
+/* eslint-disable no-console */
+/* eslint-disable import/newline-after-import */
+/* eslint-disable import/no-dynamic-require */
 const express = require('express')
 const path = require('path')
 const ClientStatsPath = path.join(__dirname, './../dist/stats.json')
@@ -14,7 +17,6 @@ app.use(ServerRenderer(Stats))
 app.listen(PORT, error => {
   if (error) {
     return console.error(error)
-  } else {
-    console.log(`Production Express server running at http://localhost:${PORT}`)
   }
+  console.log(`Production Express server running at http://localhost:${PORT}`)
 })

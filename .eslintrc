@@ -19,7 +19,8 @@
     "import/no-extraneous-dependencies": [2, {
       devDependencies: [
         "**/*.test.js",
-        "**/webpack/**"
+        "**/webpack/**",
+        "**/express/**"
       ],
       optionalDependencies: false,
     }],
@@ -52,6 +53,8 @@
       "ignoreComments": false
     }],
     # allow autobinding syntax
-    "react/jsx-no-bind": [2, { allowBind: true }]
+    "react/jsx-no-bind": [2, { allowBind: true }],
+    # disabled for Prettier compatibility
+    "arrow-parens": [0]
   }
 }
