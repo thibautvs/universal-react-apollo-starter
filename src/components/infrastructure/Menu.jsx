@@ -1,6 +1,9 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { FormattedMessage } from 'react-intl'
 import styled from 'styled-components'
+import homeMessages from '../pages/Home/messages'
+import aboutMessages from '../pages/About/messages'
 
 const StyledNav = styled.nav`
   a + a {
@@ -24,10 +27,10 @@ const StyledNavLink = styled(NavLink).attrs({
 const Menu = () => (
   <StyledNav>
     <StyledNavLink to="/" exact activeClassName={activeClassName}>
-      Home
+      <FormattedMessage {...homeMessages.home} />
     </StyledNavLink>
     <StyledNavLink to="/about" activeClassName={activeClassName}>
-      About
+      <FormattedMessage {...aboutMessages.about} />
     </StyledNavLink>
   </StyledNav>
 )

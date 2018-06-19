@@ -1,7 +1,9 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
+import { FormattedMessage } from 'react-intl'
 import { ButtonDemo } from 'toolbox'
+import messages from './messages'
 
 const GridContainer = styled.div`
   div {
@@ -18,9 +20,10 @@ const GridContainer = styled.div`
 const HomePage = () => (
   <section>
     <Helmet title="Home" />
-    <header>Home</header>
+    <header>
+      <FormattedMessage {...messages.home} />
+    </header>
     <ButtonDemo />
-    <p>Zurb Foundation Grid demo</p>
     <GridContainer>
       <div className="grid-x">
         <div className="cell">full width cell</div>

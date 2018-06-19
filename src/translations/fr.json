@@ -1,0 +1,6 @@
+{
+  "common.hello": "Bonjour",
+  "pages.home.home": "Accueil",
+  "pages.about.about": "A propos",
+  "pages.notFound.notFound": "Page non trouvée"
+}

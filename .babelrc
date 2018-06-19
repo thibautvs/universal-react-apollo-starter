@@ -12,5 +12,14 @@
       "presets": ["@babel/preset-env", "@babel/preset-react"]
     }
   },
-  "plugins": ["@babel/plugin-proposal-export-default-from"]
+  "plugins": [
+    "@babel/plugin-proposal-export-default-from",
+    [
+      "react-intl",
+      {
+        "messagesDir": "./extracted_messages/",
+        "enforceDescriptions": true
+      }
+    ]
+  ]
 }

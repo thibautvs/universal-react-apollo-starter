@@ -1,18 +1,5 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class ButtonDemo extends Component {
-  constructor(props) {
-    super(props)
-    this.state = { text: 'Click me' }
-  }
-
-  handleClick() {
-    this.setState({ text: 'Clicked' })
-  }
-
-  render() {
-    return <button onClick={::this.handleClick}>{this.state.text}</button>
-  }
-}
+const ButtonDemo = () => <input type="button" value="Button demo" />
 
 export default ButtonDemo

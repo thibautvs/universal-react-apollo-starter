@@ -17,7 +17,7 @@ module.exports = [
       publicPath: '/dist/'
     },
     resolve: {
-      extensions: ['.js', '.jsx'],
+      extensions: ['.js', '.jsx', '.json'],
       alias: {
         config: path.join(__dirname, '../config'),
         utils: path.join(__dirname, '../src/utils'),
@@ -75,7 +75,7 @@ module.exports = [
       publicPath: '/dist/'
     },
     resolve: {
-      extensions: ['.js', '.jsx'],
+      extensions: ['.js', '.jsx', '.json'],
       alias: {
         config: path.join(__dirname, '../config'),
         utils: path.join(__dirname, '../src/utils'),
