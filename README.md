@@ -45,7 +45,7 @@ It contains 3 different folders:
 - `pages`: pages of the application (ex: home, about, ...)
 - `toolbox`: reusable components (ex: Calendar, Popup, ...)
 
-## Colocation
+### Colocation
 
 Place related assets in the same folder. Ex, in `src/components/pages/Home`:
 
