@@ -3,9 +3,9 @@ import ReactDOMServer from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom'
 import { ThemeProvider, ServerStyleSheet } from 'styled-components'
 import { Helmet } from 'react-helmet'
-import Template from './app/template'
+import Template from './template'
 import theme from './theme'
-import App from './app/App'
+import App from './components/infrastructure/App'
 
 export default function serverRenderer() {
   return (req, res) => {

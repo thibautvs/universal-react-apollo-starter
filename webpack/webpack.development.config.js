@@ -20,7 +20,8 @@ module.exports = [
       extensions: ['.js', '.jsx'],
       alias: {
         config: path.join(__dirname, '../config'),
-        utils: path.join(__dirname, '../src/utils')
+        utils: path.join(__dirname, '../src/utils'),
+        toolbox: path.join(__dirname, '../src/components/toolbox')
       }
     },
     devtool: 'source-map',
@@ -77,7 +78,8 @@ module.exports = [
       extensions: ['.js', '.jsx'],
       alias: {
         config: path.join(__dirname, '../config'),
-        utils: path.join(__dirname, '../src/utils')
+        utils: path.join(__dirname, '../src/utils'),
+        toolbox: path.join(__dirname, '../src/components/toolbox')
       }
     },
     module: {

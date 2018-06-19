@@ -9,6 +9,8 @@
     "document": true
   },
   "rules": {
+    # ESLint doesn't support yet the fragment shorthand syntax (<>...</>)
+    "quotes": [0],
     # forbid semicolons
     "semi": [2, "never"],
     # add exceptions when checking imports paths
