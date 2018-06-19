@@ -18,10 +18,17 @@ export default function serverRenderer() {
       </StaticRouter>
     )
     const sheet = new ServerStyleSheet()
-    const markup = ReactDOMServer.renderToString(sheet.collectStyles(componentTree))
+    const markup = ReactDOMServer.renderToString(
+      sheet.collectStyles(componentTree)
+    )
     const styles = sheet.getStyleTags()
     const helmet = Helmet.renderStatic()
 
-    res.status(200).send(Template({ markup, styles, helmet }))
+    if (context.url) {
+      res.writeHead(301, { Location: context.url })
+      res.end()
+    } else {
+      res.send(Template({ markup, styles, helmet }))
+    }
   }
 }

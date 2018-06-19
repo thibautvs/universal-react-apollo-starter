@@ -55,6 +55,8 @@
     # allow autobinding syntax
     "react/jsx-no-bind": [2, { allowBind: true }],
     # disabled for Prettier compatibility
-    "arrow-parens": [0]
+    "arrow-parens": [0],
+    # disabled for Prettier compatibility
+    "function-paren-newline": [0]
   }
 }
