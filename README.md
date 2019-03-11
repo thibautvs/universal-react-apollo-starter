@@ -71,7 +71,3 @@ every commit to perform 4 quality checks on the changeset:
 2.  Stylelint: ensures that CSS code matches recommended conventions
 3.  Prettier: formats the code to make it easy to read and maintain
 4.  Unit tests: ensures that tests are passing
-
-## Copyright
-
-Web stack developed by Urge2code. © All Rights Reserved.
